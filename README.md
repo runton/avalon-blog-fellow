@@ -7,7 +7,7 @@
 #运行环境：
   需要xampp或其他支持php脚本的web服务器环境。
   
-  http://localhost:8080/fellowgov/home/index.html
+  http://localhost:8080/avalon-blog-fellow/home/index.html
 
 #使用插件：
   1） kindeditor编辑器
