@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=9">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>fellowgov</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/fellow.css"/>
+    <link rel="stylesheet" href="kindeditor/themes/default/default.css" />
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="js/jquery-1.12.0.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="avalon/dist/avalon.js"></script>
+    <script charset="utf-8" src="kindeditor/kindeditor.js"></script>
+    <script charset="utf-8" src="kindeditor/lang/zh_CN.js"></script>
+</head>
+<body ms-controller="root">
+<nav id="topMenu">
+    <div class="container">
+        <div class="logo lt">
+            <a href="index.html">博客</a>
+        </div>
+        <ul class="rt list-unstyled">
+            <li><a href="register.html"><span class="glyphicon glyphicon-registration-mark"></span> 注册</a></li>
+            <li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container main">
+    <div class="row content_box">
+        <div class="col-md-9">
+            <div class="art_box">
+                <h3>文章标题</h3>
+                <p><span>Rotbing:</span><span>14天前</span><span>浏览量：</span><span>21</span><span>评论：</span><span>10</span></p>
+                <div class="art_content">
+                    <p>请教下，1.X版本中的avalon.nextTick，到2.X版本后，有什么替代方法达到一样的效果的？</p>
+                </div>
+            </div>
+            <div class="post_box">
+                <h4>回复：</h4>
+                <div class="forum_editer">
+                    <form action="">
+                        <div class="input-group">
+                            <textarea name="comment" id="comment" style="width:100%;height:90px;"></textarea>
+                        </div>
+                        <div class="input-group">
+                            <button id="post_submit" type="button">提交</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="coment_box">
+                <h4>回复内容：</h4>
+                <div class="comment">
+                    <div class="media">
+                        <a href="#" class="pull-left">
+                            <img class="media-object img-responsive" src="imgs/user_imgs/61198451.jpg" alt=""/>
+                        </a>
+                        <div class="media-body">
+                            <p><a href="#">Rotbing</a></p>
+                            <p class="comment_text">第一条评论！</p>
+                            <div class="coment_operator">
+                                <span><a href="#">回复</a></span>
+                                <span>2016-09-18 09:16:49</span>
+                                <span class="floor">1 楼</span>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="module">
+                <div class="Info_item">
+                    <p><span class="glyphicon glyphicon-search"></span>站内搜索</p>
+                </div>
+                <form action="#">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="findKey" />
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Go!</button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+            <div class="module">
+                <div class="Info_item">
+                    <p><span class="glyphicon glyphicon-cloud"></span>天气</p>
+                </div>
+                <iframe allowtransparency="true" frameborder="0" width="100%" height="98" scrolling="no" src="//tianqi.2345.com/plugin/widget/index.htm?s=2&z=1&t=0&v=0&d=1&bd=0&k=0080c0&f=&q=1&e=1&a=1&c=54511&w=197&h=98&align=center"></iframe>
+            </div>
+            <div class="module">
+                <div class="Info_item">
+                    <p><span class="glyphicon glyphicon-book"></span>推荐博客</p>
+                </div>
+                <ul class="hotBlog">
+                    <li>
+                        <em class="orderOne">
+                            <em class="orderOne">1</em>
+                        </em>
+                        <a href="#">简单让网站纯色滤镜</a>
+                    </li>
+                    <li>
+                        <em class="orderTwo">
+                            <em class="orderTwo">2</em>
+                        </em>
+                        <a href="#">简单让网站纯色滤镜</a>
+                    </li>
+                    <li>
+                        <em class="orderThree">
+                            <em class="orderThree">3</em>
+                        </em>
+                        <a href="#">简单让网站纯色滤镜</a>
+                    </li>
+                    <li>
+                        <em class="orderOther">
+                            <em class="orderOther">4</em>
+                        </em>
+                        <a href="#">简单让网站纯色滤镜</a>
+                    </li>
+                    <li>
+                        <em class="orderOther">
+                            <em class="orderOther">5</em>
+                        </em>
+                        <a href="#">简单让网站纯色滤镜</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="module">
+                <div class="Info_item">
+                    <p><span class="glyphicon glyphicon-tags"></span>文章标签</p>
+                </div>
+                <ul class="word list-unstyled">
+                    <li>JavaScript</li>
+                    <li>Bootstrap</li>
+                    <li>PHP</li>
+                    <li>HTML5</li>
+                    <li>jQuery</li>
+                    <li>Two.js</li>
+                    <li>Mysql</li>
+                    <li>AngularJS</li>
+                    <div class="clear"></div>
+                </ul>
+            </div>
+            <div class="module">
+                <div class="Info_item">
+                    <p><span class="glyphicon glyphicon-file"></span>最新文章</p>
+                </div>
+                <ul class="last_article list-unstyled">
+                    <li>
+                        <a href="#">文章标题</a>
+                    </li>
+                    <li>
+                        <a href="#">文章标题</a>
+                    </li>
+                    <li>
+                        <a href="#">文章标题</a>
+                    </li>
+                    <li>
+                        <a href="#">文章标题</a>
+                    </li>
+                    <li>
+                        <a href="#">文章标题</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="module">
+                <div class="Info_item">
+                    <p><span class="glyphicon glyphicon-comment"></span>最新评论</p>
+                </div>
+                <ul class="comment list-unstyled">
+                    <li>
+                        <a href="#">
+                            <img class="lt" src="imgs/user_imgs/61198451.jpg" alt=""/>
+                            <div class="lt">
+                                <strong>Rotbing</strong>
+                                <p>这是一个评论！</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img class="lt" src="imgs/user_imgs/61198451.jpg" alt=""/>
+                            <div class="lt">
+                                <strong>Rotbing</strong>
+                                <p>这是一个评论！</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img class="lt" src="imgs/user_imgs/61198451.jpg" alt=""/>
+                            <div class="lt">
+                                <strong>Rotbing</strong>
+                                <p>这是一个评论！</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img class="lt" src="imgs/user_imgs/61198451.jpg" alt=""/>
+                            <div class="lt">
+                                <strong>Rotbing</strong>
+                                <p>这是一个评论！</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img class="lt" src="imgs/user_imgs/61198451.jpg" alt=""/>
+                            <div class="lt">
+                                <strong>Rotbing</strong>
+                                <p>这是一个评论！</p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="module">
+                <div class="Info_item">
+                    <p><span class="glyphicon glyphicon-picture"></span>广告</p>
+                </div>
+                <ul class="shop_link list-unstyled">
+                    <li><a href="#"><img class="img-responsive" src="imgs/ad/123456.jpg" alt=""/></a></li>
+                    <li><a href=""><img class="img-responsive" src="imgs/ad/123456.jpg" alt=""/></a></li>
+                    <li><a href=""><img class="img-responsive" src="imgs/ad/123456.jpg" alt=""/></a></li>
+                    <li><a href=""><img class="img-responsive" src="imgs/ad/123456.jpg" alt=""/></a></li>
+                    <div class="clear"></div>
+                </ul>
+            </div>
+            <div class="module">
+                <div class="Info_item">
+                    <p><span class="glyphicon glyphicon-link"></span>友情链接</p>
+                </div>
+                <ul class="weblink list-unstyled">
+                    <li>
+                        <a href="#"><span class="glyphicon glyphicon-link"></span>百度</a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="glyphicon glyphicon-link"></span>Google</a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="glyphicon glyphicon-link"></span>runton</a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="glyphicon glyphicon-link"></span>fellowgov</a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="glyphicon glyphicon-link"></span>360</a>
+                    </li>
+                    <div class="clear"></div>
+                </ul>
+            </div>
+            <div class="module">
+                <div class="Info_item">
+                    <p><span class="glyphicon glyphicon-envelope"></span>联系我</p>
+                </div>
+                <ul class="contact_us list-unstyled">
+                    <li>
+                        联系站长：949869293@qq.com
+                    </li>
+                    <li>
+                        QQ群讨论：94266216
+                    </li>
+                    <li>
+                        微信群：sge-001
+                    </li>
+                    <li>
+                        <img class="img-responsive" src="imgs/host/IMG_0630.jpg" alt=""/>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="foot">
+    <div class="container">
+        <ul class="runton-info list-unstyled">
+            <li>Copyright © 2015-2016 云腾社区  runton.com.cn All Rights Reserved.</li>
+            <li> 备案号：皖ICP备16003202号-1</li>
+        </ul>
+    </div>
+</div>
+<!-- TODO 侧边栏 -->
+<div class="slideToolbarContainer">
+    <!-- TODO 浮动导航 -->
+    <div class="slideToolbar">
+        <div class="appList">
+            <div class="RThome">
+                <a href="#">首页</a>
+            </div>
+            <div class="RTsearch">
+                <a href="#">百度</a>
+            </div>
+            <div class="RTnevagation">
+                <a href="#">导航</a>
+            </div>
+            <div class="RTMusic">
+                <a href="#">音乐</a>
+            </div>
+            <div class="RTgames">
+                <a href="#">游戏</a>
+            </div>
+        </div>
+        <div class="playerContainer" id="Mplayer">
+            <h2 class="icon icon-lab">Mplayer</h2>
+            <div id="player4" class="aplayer"></div>
+        </div>
+    </div>
+</div>
+<script src="js/APlayer.min.js"></script>
+<script src="js/common.js"></script>
+<script>
+    var editor;
+    KindEditor.ready(function(K) {
+        editor = K.create('textarea[name="comment"]', {
+            resizeType : 0,
+            allowPreviewEmoticons : false,
+            allowImageUpload : false,
+            items : [
+                'forecolor', 'bold', 'italic', 'underline',
+                'removeformat','code', '|', 'insertorderedlist', 'insertunorderedlist',
+                '|', 'emoticons', 'link','undo','redo']
+        });
+    });
+</script>
+</body>
+</html>

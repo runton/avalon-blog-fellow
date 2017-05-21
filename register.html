@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=9">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>fellowgov</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!--[if IE ]>
+    <script src="js/bluebird.min.js"></script>
+    <![endif]-->
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="js/jquery-1.12.0.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="avalon/dist/avalon.js"></script>
+    <style>
+        body{
+            color:black;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            background-color: white;
+        }
+        .clear{
+            clear: both;
+        }
+        .lt{
+            float: left;
+        }
+        .rt{
+            float: right;
+        }
+        #topMenu{
+            margin-bottom: 15px;
+            min-height: 40px;
+            border-bottom: 1px solid transparent;
+            color: #e7e7e7;
+            background-color: #f8f8f8;
+            z-index: 1000;
+
+        }
+        #topMenu .logo a{
+            display: inline-block;
+            height: 100%;
+            line-height: 40px;
+            text-decoration: none;
+        }
+        #topMenu ul li{
+            float: left;
+            width: 80px;
+            height: 40px;
+        }
+        #topMenu ul li a{
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            line-height: 40px;
+        }
+        .main{
+            padding: 30px;
+        }
+        .foot .container ul li{
+            color: #aaa;
+            text-align: center;
+        }
+        #rootwizard {
+            text-align: center;
+        }
+        #rootwizard .fixedBox{
+            display: inline-block;
+            min-width: 524px;
+            text-align: left;
+        }
+        .clearfix{
+            padding: 15px;
+        }
+        .clearfix .row{
+            list-style: none;
+            padding-bottom: 10px;
+            vertical-align: middle;
+            text-align: center;
+            font-size: 1.166em;
+            color: #333;
+        }
+        .clearfix .row span{
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .clearfix .row .tit {
+            display: inline-block;
+            width: 100px;
+            font-size: 0.8em;
+            padding-right: 5px;
+            text-align: right;
+        }
+        .clearfix .row input {
+            border: 1px solid #ccc;
+            width: 200px;
+            height: 35px;
+            padding-left: 5px;
+            font-size: 14px;
+            color: #ccc;
+        }
+        .change-code {
+            font-size: 1em;
+            margin-left: 5px;
+            margin-top: 10px;
+            color: #999;
+        }
+
+        .clearfix .row .send-code {
+            display: inline-block;
+            background: #ddd;
+            margin-left: 0px;
+            width: 120px;
+            height: 35px;
+            line-height: 30px;
+            font-size: 14px;
+            white-space: nowrap;
+            color: #333;
+            text-align: center;
+            text-decoration: none;
+        }
+        .clearfix .row .resend-code {
+            position: relative;
+            display: none;
+        }
+        .clearfix .row .submit {
+            display: inline-block;
+            margin-left: 274px;
+            margin-right: 10px;
+            width: 298px;
+            height: 30px;
+            vertical-align: text-bottom;
+            font-size: 16px;
+            line-height: 30px;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            background: #dc3c00;
+        }
+
+        .regWizard{
+            list-style-type: none;
+        }
+        .tab-pane{
+            min-height: 260px;
+        }
+        .bwizard-steps {
+            display: inline-block;
+            margin: 0; padding: 0;
+            background: #fff }
+        .bwizard-steps .active {
+            color: #fff;
+            background: #FF9966 }
+        .bwizard-steps .active:after {
+            border-left-color: #FF9966 }
+        .bwizard-steps .active a {
+            color: #fff;
+            cursor: default }
+        .bwizard-steps .label {
+            position: relative;
+            top: -1px;
+            margin: 0 5px 0 0; padding: 1px 5px 2px;
+            color: #FF9966
+        }
+        .bwizard-steps .active .label {
+            background-color: #fff;}
+        .bwizard-steps li {
+            display: inline-block; position: relative;
+            margin-right: 5px;
+            padding: 12px 17px 10px 30px;
+            *display: inline;
+            *padding-left: 17px;
+            width: 280px;
+            background: #ddd;
+            line-height: 18px;
+            list-style: none;
+            zoom: 1; }
+        .bwizard-steps li:first-child {
+            padding-left: 12px;
+            -moz-border-radius: 4px 0 0 4px;
+            -webkit-border-radius: 4px 0 0 4px;
+            border-radius: 4px 0 0 4px; }
+        .bwizard-steps li:first-child:before {
+            border: none }
+        .bwizard-steps li:last-child {
+            margin-right: 0;
+            -moz-border-radius: 0 4px 4px 0;
+            -webkit-border-radius: 0 4px 4px 0;
+            border-radius: 0 4px 4px 0; }
+        .bwizard-steps li:last-child:after {
+            border: none }
+        .bwizard-steps li:before {
+            position: absolute;
+            left: 0; top: 0;
+            height: 0; width: 0;
+            border-bottom: 20px inset transparent;
+            border-left: 20px solid #fff;
+            border-top: 20px inset transparent;
+            content: "" }
+        .bwizard-steps li:after {
+            position: absolute;
+            right: -20px; top: 0;
+            height: 0; width: 0;
+            border-bottom: 20px inset transparent;
+            border-left: 20px solid #efefef;
+            border-top: 20px inset transparent;
+            content: "";
+            z-index: 2; }
+        .bwizard-steps a {
+            color: #333 }
+        .bwizard-steps a:hover {
+            text-decoration: none }
+        .bwizard-steps.clickable li:not(.active) {
+            cursor: pointer }
+        .bwizard-steps.clickable li:hover:not(.active) {
+            background: #ccc }
+        .bwizard-steps.clickable li:hover:not(.active):after {
+            border-left-color: #ccc }
+        .bwizard-steps.clickable li:hover:not(.active) a {
+            color: #08c }
+        @media (max-width: 480px) {
+            /* badges only on small screens */
+            .bwizard-steps li:after,
+            .bwizard-steps li:before {
+                border: none }
+            .bwizard-steps li,
+            .bwizard-steps li.active,
+            .bwizard-steps li:first-child,
+            .bwizard-steps li:last-child {
+                margin-right: 0;
+                padding: 0;
+                background-color: transparent }
+        }
+        .pager .previous>a, .pager .previous>span{
+            float: none;
+        }
+        .pager .next>a, .pager .next>span{
+            float: none;
+        }
+        #tab2 h2{
+            padding-top: 80px;
+            margin-bottom: 30px;
+        }
+        #tab2 p a{
+            display: inline-block;
+            margin: 15px;
+        }
+        .msgTip{
+            font-size: 0.6em;
+        }
+        .valid-default{
+
+        }
+        .valid-success{
+            color: green;
+        }
+        .valid-err{
+            color: red;
+        }
+        .notice span{
+            display: inline-block;
+            padding-left: 100px;
+            width: 524px;
+            text-align: left;
+            font-size: 0.5em;
+            color: #aaa;
+        }
+
+    </style>
+</head>
+<body ms-controller="root">
+<nav id="topMenu">
+    <div class="container">
+        <div class="logo lt">
+            <a href="index.html">博客</a>
+        </div>
+        <ul class="rt list-unstyled">
+            <li><a href="register.html"><span class="glyphicon glyphicon-registration-mark"></span> 注册</a></li>
+            <li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container main">
+
+    <div id="rootwizard">
+        <ul class="regWizard bwizard-steps" id="bwizard_steps">
+            <li class="active"><a href="#"><span class="label">1</span> 填写用户名及密码</a></li>
+            <li><a href="#"><span class="label">2</span> 绑定邮箱</a></li>
+            <li><a href="#"><span class="label">3</span> 注册结果</a></li>
+        </ul>
+
+        <form id="regform" ms-validate="@validate" class="clearfix" method="get" action="php/runton_add_user.php">
+            <div class="tab-content">
+                <div class="tab-pane active" id="tab0">
+                    <div class="row">
+                        <div class="fixedBox">
+                            <span class="tit">注册账号：</span>
+                            <span class="input">
+                                <input type="text" name="username" placeholder="请输用户名" ms-duplex="username" ms-rules="{required:true,pattern:/^[a-zA-Z0-9]{4,16}$/}">
+                            </span>
+                            <span class="msgTip"></span>
+                        </div>
+                        <div class="notice">
+                            <span>由字母、数字组成(4-16位)</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="fixedBox">
+                            <span class="tit">用户密码：</span>
+                            <span class="input">
+                                <input type="password" name="passwd1" id="passwd1" ms-duplex="passwd1" ms-rules="{required:true,pattern:/^[a-zA-Z0-9]{6,12}$/}"/>
+                            </span>
+                            <span class="msgTip"></span>
+                        </div>
+                        <div class="notice">
+                            <span>由字母、数字和特殊符号(~!@#$%^*)组成，区分大小写(6~16位)</span>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="fixedBox">
+                            <span class="tit">重输密码：</span>
+                            <span class="input">
+                                <input type="password" name="passwd2" id="passwd2" ms-duplex="passwd2" ms-rules="{required:true,pattern:/^[a-zA-Z0-9]{6,12}$/,equal:true}" />
+                            </span>
+                            <span class="msgTip"></span>
+                        </div>
+                        <div class="notice">
+                            <span>与初始密码要相同</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="fixedBox">
+                            <span class="tit"></span>
+                            <span class="provision" style="font-size:12px;">
+                                <input id="agree" class="agree" name="agree" type="checkbox" ms-duplex-checked="@agree" ms-rules="{checked:true}" style="width:20px;height:12px"/>我已仔细阅读并接受<a href="statement.html" target="_blank">fellow注册条款</a>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="fixedBox">
+                            <span class="tit"></span>
+                            <span class="input">
+                                <input type="submit" value="下一步" class="btn btn-success" ms-click="nextStep($event);"/>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="tab1">
+                        <div class="row">
+                            <div class="fixedBox">
+                                <span class="tit">邮箱地址：</span>
+                                <span class="input">
+	                                <input type="text" name="email" placeholder="请输入你要绑定的邮箱地址" :duplex="@email" :rules="{required:true,pattern:/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/}">
+                                </span>
+                                <span class="msgTip"></span>
+                            </div>
+                            <div class="notice">
+                                <span>请输入正确有效的邮箱地址</span>
+                            </div>
+                        </div>
+                        <div class ="row">
+                            <div class="fixedBox">
+                                <span class="tit"></span>
+                                <a href="#" class="send-code">获取验证码</a>
+                                <span class="msgTip">60s后可重新申请验证码</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="fixedBox">
+                                <span class="tit">验证码：</span>
+                                <span class="input">
+	                                <input type="text" name="vcode" :duplex="@vcode" :rules="{required:true,pattern:/[a-zA-Z0-9]+/}">
+                                </span>
+                                <a href="#" class="send-code" :click="checkCode();">校验验证码</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="notice">
+                                <span>点击获取验证码之后，请打开您的邮箱查看验证码。</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="fixedBox">
+                                <span class="tit"></span>
+                                <span class="input">
+	                                <input type="submit" class="btn btn-primary" value="注册" ms-click="regUser($event)">
+                                </span>
+                            </div>
+                        </div>
+                </div>
+                <div class="tab-pane" id="tab2">
+                    <h2 :if="!@regResult" class="text-success text-center">服务器未响应，注册失败。请稍后再试。</h2>
+                    <h2 :if="@regResult" class="text-success text-center">注册完成。。。{{redirect_time}}秒后自动跳转到登录页</h2>
+                    <p class="text-center">
+                        <a href="index.html">返回首页</a>
+                        <a href="login.html">切换登录</a>
+                    </p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="foot">
+    <div class="container">
+        <ul class="runton-info list-unstyled">
+            <li>Copyright © 2015-2016 云腾社区  runton.com.cn All Rights Reserved.</li>
+            <li> 备案号：皖ICP备16003202号-1</li>
+        </ul>
+    </div>
+</div>
+<script>
+    (function($) {
+        $.fn.placeholder = function(options) {
+            var opts = $.extend({}, $.fn.placeholder.defaults, options);
+            var isIE = document.all ? true : false;
+            return this.each(function() {
+                var _this = this,
+                        placeholderValue = _this.getAttribute("placeholder"); //缓存默认的placeholder值
+                if (isIE) {
+                    _this.setAttribute("value", placeholderValue);
+                    _this.onfocus = function() {
+                        $.trim(_this.value) == placeholderValue ? _this.value = "" : '';
+                    };
+                    _this.onblur = function() {
+                        $.trim(_this.value) == "" ? _this.value = placeholderValue : '';
+                    };
+                }
+            });
+        };
+    })(jQuery);
+
+    $("input[type='text']").placeholder();
+
+//    $(document).ready(function() {
+//        var m = $('#rootwizard').bootstrapWizard({'tabClass': 'bwizard-steps'});
+//        //console.log($('#rootwizard').bootstrapWizard('currentIndex'));
+//    });
+
+
+    $('#bwizard_steps a:first').tab('show');
+    // 自定义验证规则
+    avalon.validators.checked = {
+        message: '必须扣上',
+        get: function (value, field, next) {
+            next(value);
+            return value;
+        }
+    };
+
+    avalon.validators.equal ={
+        message:'两次密码必须相同',
+        get: function(value,field,next){
+            //验证两次密码是否相同
+            var passwd1 = vm.passwd1;
+            if(passwd1 == value){
+                next(true);
+                return value;
+            }else{
+                next(false);
+                return value;
+            }
+        }
+    };
+
+    avalon.validators.checkUname ={
+        message:'用户名已注册',
+        get: function(value,field,next){
+            //向服务器发送查询请求，确认用户名是否已注册
+            next(true);
+            return value;
+        }
+    };
+
+    var vm = avalon.define({
+        $id:"root",
+        regDatas:'',
+        username:'',
+        passwd1:'',
+        passwd2:'',
+        agree: true,
+        email:'',
+        vcode: '',
+        vcode_result:false,
+        currentIndex:0,
+        regResult: false,
+        redirect_time: 5,
+        validate:{
+            onError: function (reasons) {
+                reasons.forEach(function (reason) {
+                    //向对应的表单元素中，追加一个
+                    //各输入表单分类处理
+                    var target = reason.element;
+                    var msgTip =$(target).parent().next("span.msgTip");
+                    msgTip.addClass("valid-err");
+                    msgTip.html("<img src='imgs/mini_icon/error.png' style='width: 23px;height: 23px'/>");
+                })
+            },
+            onSuccess: function(reasons, event) {
+                reasons.forEach(function (reason) {
+                    var target = reason.element;
+                    var msgTip = $(target).parent().next("span.msgTip");
+                    msgTip.addClass("valid-success");
+                    msgTip.html("<img src='imgs/mini_icon/right.png' style='width: 23px;height: 23px'/>");
+                })
+            },
+            onValidateAll: function (reasons) {
+                if (reasons.length) {
+                    console.log('有表单没有通过');
+                    return false;
+                } else {
+                    console.log('全部通过');
+                    return true;
+                }
+            }
+        },
+        nextStep:function(e){
+            e.preventDefault();
+            var form = $('#regform');
+            var succMsg = $('.valid-success');
+            //$('#regform').submit();
+            //判断表单内容是否验证通过，
+            if(succMsg.length ==3 && vm.agree){
+                //通过进入下一项信息填写， 否则 提示用户信息输入有误
+                var next = $('.bwizard-steps .active').next('li')[0];
+                $('.bwizard-steps .active').removeClass("active");
+                $(next).addClass('active');
+
+                $('#tab0').removeClass('active');
+                $('#tab1').addClass('active');
+            }else{
+                alert("信息有误。");
+            }
+
+
+            //表单序列化
+
+            //console.log(data);
+
+        },
+        regUser: function(e){
+            e.preventDefault();
+            //获得当前页面的表单对象
+            var currentForm = $('#regform');
+            var succMsg = $('.valid-success');
+            //判断表单内容是否验证通过
+            if(succMsg.length ==4 && vm.vcode_result!=false){
+                //表单序列化 提交数据
+                var regData = currentForm.serializeArray();
+                $.get("php/runton_add_user.php", regData,function(data){
+                    if(data){ //注册成功
+                        vm.regResult = true;
+                        //表单提交后，切换到 注册结果页面
+                        var next = $('.bwizard-steps .active').next('li')[0];
+                        $('.bwizard-steps .active').removeClass("active");
+                        $(next).addClass('active');
+
+
+                        $('#tab1').removeClass('active');
+                        $('#tab2').addClass('active');
+
+                        var timer = setInterval(function(){
+                            vm.redirect_time--;
+                            if(vm.redirect_time==0){
+                                self.location ="http://localhost:8080/fellowgov/home/login.html";
+                                clearInterval(timer);
+                            }
+                        },1000);
+                    }else{ //注册失败
+                        vm.regResult = false;
+
+                        //切换到 注册结果页面
+                        var next = $('.bwizard-steps .active').next('li')[0];
+                        $('.bwizard-steps .active').removeClass("active");
+                        $(next).addClass('active');
+
+
+                        $('#tab1').removeClass('active');
+                        $('#tab2').addClass('active');
+                    }
+                });
+            }else{
+                alert("邮箱地址或验证码输入错误。");
+            }
+        },
+        checkCode:function(){
+            // 向服务发送验证码，验证验证码是否正确
+            vm.vcode_result =true;
+            console.log(vm.vcode_result );
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<div class="row bg_gray">
+    <div id="slidebar_Menu" class="col-md-2">
+        <ul  class="list-unstyled" :click="toggleTab($event);">
+            <li class="header">主菜单</li>
+            <li class="treeView">
+                <a href="#" data-tab="userInfo">
+                    <i class="glyphicon glyphicon-user"></i>
+                    个人管理
+                </a>
+            </li>
+            <li class="treeView">
+                <a href="#" data-tab="editArticle">
+                    <i class="glyphicon glyphicon-edit"></i>
+                    添加文章
+                </a>
+            </li>
+            <li class="treeView">
+                <a href="#" data-tab="artManagement">
+                    <i class="glyphicon glyphicon-file"></i>
+                    文章管理
+                </a>
+            </li>
+            <li class="treeView">
+                <a href="#" data-tab="classicManagement">
+                    <i class="glyphicon glyphicon-tasks"></i>
+                    分类管理
+                </a>
+            </li>
+            <li class="treeView">
+                <a href="#" data-tab="commentManagement">
+                    <i class="glyphicon glyphicon-comment"></i>
+                    评论管理
+                </a>
+            </li>
+            <li class="treeView">
+                <a href="#" data-tab="draft">
+                    <i class="glyphicon glyphicon-inbox"></i>
+                    草稿箱
+                </a>
+            </li>
+            <li class="treeView">
+                <a href="#" data-tab="recycle">
+                    <i class="glyphicon glyphicon-trash"></i>
+                    回收站
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-10 bg_white">
+        <ul class="breadcrumb">
+            <li><a href="#"><span class="glyphicon glyphicon-home"></span>我的博客</a></li>
+            <li class="active">个人管理</li>
+        </ul>
+        <div id="blog_management" class="contentBox">
+            <xmp :if="submenu=='userInfo'" cache="true" ms-widget="{is:'ms-userinfo'}"></xmp>
+            <xmp :if="submenu=='artManagement'" cache="true" ms-widget="{is:'ms-artManagement'}"></xmp>
+            <xmp :if="submenu=='classicManagement'" cache="true" ms-widget="{is:'ms-classicManagement'}"></xmp>
+            <xmp :if="submenu=='commentManagement'" cache="true" ms-widget="{is:'ms-commentManagement'}"></xmp>
+            <xmp :if="submenu=='draft'" cache="true" ms-widget="{is:'ms-draft'}"></xmp>
+            <xmp :if="submenu=='recycle'" cache="true" ms-widget="{is:'ms-recycle'}"></xmp>
+            <div :if="submenu=='editArticle'">
+                <xmp cache="true" ms-widget="{is:'ms-editArticle'}"></xmp>
+            </div>
+
+        </div>
+    </div>
+</div>

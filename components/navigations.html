@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=9">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>导航</title>
+    <link rel="shortcut icon" href="../favicon.ico">
+    <!-- Bootstrap -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .search_box{
+            background-color: #3F7EAB;
+        }
+        #input_button{
+            float: left;
+        }
+        #span_search{
+            position: relative;
+        }
+        #suggestion_div{
+            display: none;
+            position: absolute;
+            width: 100%;
+            top: 34px;
+            background-color: white;
+        }
+        .show{
+            display: block;
+        }
+        #suggestions_ul{
+            list-style-type: none;
+            margin-bottom: 0;
+            padding: 0;
+        }
+        #suggestions_ul li{
+            margin: 2px 0;
+        }
+        .mouseOver{
+            color: red;
+            background-color: #00b7ee;
+        }
+        .Search-item{
+            margin-top: 30px;
+        }
+        .searchImg img{
+            margin: 5px auto;
+        }
+        .nav_classic{
+            height: 40px;
+            line-height: 40px;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+    <script src="../js/jquery-1.12.0.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="row search_box">
+            <div class="container">
+                <!--TODO 搜索-->
+                <div class="Search-item">
+                    <div class="searchImg">
+                        <img class="img-responsive" src="../imgs/5644a4015f681b192f43d02e95bee21d.png"/>
+                    </div>
+                    <div>
+                        <form id="search" action="//www.baidu.com/s" name="myForm"  target="_blank">
+
+                            <div class="input-group">
+                                <div id="span_search">
+                                    <input id="searchkey" type="text" class="form-control" autocomplete="off" maxlength="100" name="word" autofocus onkeyup="keyEvent(event);"/>
+                                    <div id="suggestion_div">
+                                        <ul id="suggestions_ul"></ul>
+                                    </div>
+                                </div>
+                            <span class="input-group-btn">
+                                <button id="input_button" class="btn btn-info" type="button">搜 索</button>
+                            </span>
+                            </div>
+                            <div>
+                                <input type="radio" name="searchor" id="baidu" checked value="baidu"/><label for="baidu">百度</label>
+                                <input type="radio" name="searchor" id="bing" value="bing"/><label for="bing" >必应</label>
+                                <input type="radio" name="searchor" id="Google"  value="google"/><label for="Google">谷歌</label>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row nav_classic">
+            <div class="container">
+                <a href="#">最热</a>
+                <a href="#">最新</a>
+                <a href="#">境内</a>
+                <a href="#">境外</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $("#search input").click(function(e){
+            var target = e.target;
+            var key =$("#searchkey").val();
+
+            if(target.value=="baidu"){
+                $(".searchImg img").attr("src","../imgs/5644a4015f681b192f43d02e95bee21d.png");
+                $("#searchkey").attr("name","wd");
+                $("#search").attr('action','https://www.baidu.com/s');
+            }else if(target.value=="bing"){
+                $(".searchImg img").attr("src","../imgs/201611814427514.jpg");
+                $("#searchkey").attr("name","q");
+                $("#search").attr("action","http://cn.bing.com/search");
+            }else if(target.value=="google"){
+                $(".searchImg img").attr("src","../imgs/14526720044.jpg");
+                $("#searchkey").attr("name","q");
+                $("#search").attr("action","https://www.google.com.hk/");
+            }
+        });
+
+        $("#search button").click(function(){
+            var search = document.getElementById('search');
+            search.submit();
+        });
+
+        //声明并初始化全局变量（动态添加下拉框的几个很重要的变量）
+        var inputField = document.forms["myForm"].searchkey;
+        var suggestionDiv = document.getElementById("suggestion_div");
+        var suggestionsUl = document.getElementById("suggestions_ul");
+        var suggestionLi = null;
+        var suggestionNodes =null;
+
+        var suggestion = ["abcde","华南理工大学","abcd","华南师范大学","abcdefg","华南农业大学","abcdefgh","广东工业大学","广东外语外贸大学","计算机科学与技术","广东财经大学","计算机学院","广州医科大学","计算机","广州大学"];//模拟的数据源
+        suggestion.sort(); // 按字母排序，使显示结果更友好
+
+        function clearSuggestions(){
+            suggestionsUl.innerHTML="";
+        }
+        //动态生成下拉列表
+        function setSuggestions(the_suggestions) {// 动态生成suggestion下拉框
+            clearSuggestions(); // 每输入一个字符就先清除原先的提示
+            suggestionDiv.className = "show";
+            for (var i = 0; i < the_suggestions.length; i++) {// 将匹配的提示结果逐一显示给用户
+                suggestionLi = document.createElement("li");
+                suggestionsUl.appendChild(suggestionLi);
+                suggestionLi.appendChild(document.createTextNode(the_suggestions[i]));
+                mouseEvent();// 对每个<li>触发鼠标事件
+            }
+        }
+        //搜索框中键入字符事件，查询匹配项
+        var selectedSuggestion =-1;
+        function keyEvent(e){
+
+            var e = event || window.event || arguments.callee.caller.arguments[0];
+            var searchText = e.target.value;
+            if(searchText!=""){
+//          使用suggestion 数组模拟jsonp跨域请求获得得数据
+//                var reg =new RegExp(searchText,"i");
+//                var matchResult =[];
+//                for(var i=0;i<suggestion.length;i++){
+//                    var bool=suggestion[i].search(reg);
+//                    if(bool!=-1){
+//                        matchResult.push(suggestion[i]);
+//                    }
+//                }
+//                if(matchResult.length>0){
+//                    setSuggestions(matchResult);
+//                }
+
+                //向百度请求数据
+                fillUrls();
+
+                var suggestionNodes =$("#suggestions_ul li");
+                switch(e.keyCode){
+                    case 40 :
+                        suggestionNodes.eq(selectedSuggestion).removeClass("mouseOver");//先将上面一个<li>变成白色
+                        selectedSuggestion++; // 每向下移一位，selectedSuggestion就+1
+                        if (selectedSuggestion == suggestionNodes.length) {
+                            selectedSuggestion = 0;//如果索引值变成suggestionNodes.length，则将索引值指向第一个元素
+                        }
+                        console.log(selectedSuggestion);
+                        suggestionNodes.eq(selectedSuggestion).addClass("mouseOver");//再将下面一个<li>变成灰色
+                        break;//up 向下方向键
+                    case 38:
+                        suggestionNodes.eq(selectedSuggestion).removeClass("mouseOver");//先将下面一个<li>变成白色
+                        selectedSuggestion--;// 每向上移一位，selectedSuggestion就-1
+                        if (selectedSuggestion == -1) {
+                            selectedSuggestion = suggestionNodes.length - 1;//如果索引值变成-1，则将索引值指向最后一个元素
+                        }
+                        //console.log(selectedSuggestion);
+                        suggestionNodes.eq(selectedSuggestion).addClass("mouseOver");//再将上面一个<li>变成灰色
+                        break; //down 向上方向键
+                }
+            }else
+                clearSuggestions(); // 此步用作用户输入（Backspace健）将输入框清除完时的处理
+        }
+        //鼠标事件
+        function mouseEvent(){
+            suggestionLi.onmouseover = function() {
+                this.className = "mouseOver"; // 鼠标经过时高亮
+                inputField.value = this.firstChild.nodeValue;// 同时将当前的选中值赋值给百度输入框
+            }
+            suggestionLi.onmouseout = function() {
+                this.className = "mouseOut"; // 离开时恢复原样
+            }
+            suggestionLi.onclick = function() {// 用户点击某个匹配项时清除提示框
+                clearSuggestions();
+            }
+        }
+
+        //
+        function fillUrls() {
+            var strdomin = $.trim($("#searchkey").val());
+            var qsData = { 'wd': strdomin, 'p': '3', 'cb': 'findSuggestions', 't': new Date().getMilliseconds().toString() };
+            $.ajax({// 发jsonp（跨域请求js）
+                async: false,
+                url: "http://suggestion.baidu.com/su",
+                type: "GET",
+                dataType: 'jsonp',
+                jsonp: 'callback',
+                jsonpCallback:"findSuggestions",
+                data: qsData,
+                timeout: 500,
+                success: function (json) {
+
+                },
+                error: function (xhr) {
+
+                }
+            });
+        }
+
+        function findSuggestions(data){
+            var info =data['s'];
+            console.log(info);
+            if(!$.isEmptyObject(info)){
+                setSuggestions(info);
+            }else{
+                clearSuggestions();
+            }
+        }
+
+    </script>
+</body>
+</html>

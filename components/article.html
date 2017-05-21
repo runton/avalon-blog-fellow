@@ -1,0 +1,318 @@
+<div class="row content_box">
+    <div class="col-md-9">
+        <!--  TODO 标签 -->
+        <div class="current_page">
+            <ol class="breadcrumb">
+                <li><a href="#!/home">首页</a></li>
+                <li class="active">博文</li>
+            </ol>
+        </div>
+        <div id="art_title" class="article_title">
+            <span></span>
+            <h3 class="text-center">
+                <a href="#">Ubuntu16.10 下安装node.js提示./configure 权限不够的解决方法</a>
+            </h3>
+        </div>
+        <div id="art_baseinfo" class="baseInfo">
+            <p class="text-center tags">
+                <span><i class="glyphicon glyphicon-user"></i>流星</span>
+                <span><i class="glyphicon glyphicon-time"></i>2011-10-25</span>
+                <span><i class="glyphicon glyphicon-book"></i>HTML5/CSS</span>
+                <span><i class="glyphicon glyphicon-eye-open"></i>1255</span>
+                <span><i class="glyphicon glyphicon-comment"></i>34</span>
+            </p>
+            <hr/>
+        </div>
+        <!-- TODO  全部内容: -->
+        <div id="article_content" class="article_content">
+
+            <p><span style="font-size:14px">最近在学习meteor，于是在自己的笔记本上装了个双系统Win7+Ubuntu16.10。第一次使用ubuntu系统，感觉很好。</span></p>
+            <p><span style="font-size:14px"><br>
+</span></p>
+            <p><span style="font-size:14px">接下来准备在Ubuntu上安装node。</span></p>
+            <p><span style="font-size:14px">1)&nbsp; 根据<a href="http://lib.csdn.net/base/nodejs" class="replace_word" title="Node.js知识库" target="_blank" style="color:#df3434; font-weight:bold;">Node.js</a> 安装提示文档 BUILDING.md 要求升级系统，并安装<a href="http://lib.csdn.net/base/nodejs" class="replace_word" title="Node.js知识库" target="_blank" style="color:#df3434; font-weight:bold;">node.js</a>依赖的包</span></p>
+            <p><span style="font-size:14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a)&nbsp; sudo apt-get update</span></p>
+            <p><span style="font-size:14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b)&nbsp; sudo apt-get install <a href="http://lib.csdn.net/base/python" class="replace_word" title="Python知识库" target="_blank" style="color:#df3434; font-weight:bold;">Python</a> gcc make g++</span></p>
+            <p align="left"><span style="font-size:14px">&nbsp; <img src="http://img.blog.csdn.net/20170111124252847?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvUm90YmluZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" width="645" height="276"><br>
+</span></p>
+            <p><span style="font-size:14px">2) 到node官网上下载&nbsp;&nbsp; node-v6.9.4.tar.gz 源码，node源码压缩包我放在tmp文件夹下；</span></p>
+            <p><span style="font-size:14px">3) 在源码所在文件夹启动终端，输入命令：<span style="color:#FF0000">tar zxvf node-v6.9.4.tar.gz</span></span></p>
+            <p><span style="font-size:14px"><span style="color:#FF0000">&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#000000">
+压缩包解压到当前目录：/tmp/node-v6.9.4</span><br>
+</span></span></p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp; <img src="http://img.blog.csdn.net/20170111115715453?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvUm90YmluZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" width="762" height="313"></p>
+            <p><span style="font-size:14px">4) 现在进入源代码目录，然后运行./configure文件，如下图所示:</span></p>
+            <p><img src="http://img.blog.csdn.net/20170111120436041?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvUm90YmluZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" width="780" height="394"></p>
+            <p><span style="font-size:14px">5) 界面提示“权限不够”；百度了一下，发现是文件夹下configure文件没有可执行的权限，所以要成功运行上面的命令，必须先设置configure为可执行文件。</span></p>
+            <p><span style="font-size:14px">使用chmod命令设置（需要管理员权限）：例如&nbsp;&nbsp; chmod 777 文件名（目录文件名）； <br>
+</span></p>
+            <p><span style="font-size:14px">chmod 命令在此不过多描述，想了解更多可以百度一下。</span></p>
+            <p><img src="http://img.blog.csdn.net/20170111122649055?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvUm90YmluZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br>
+            </p>
+            <p><span style="font-size:14px">6）接下来在运行./configure ；运行结果如图</span></p>
+            <p><img src="http://img.blog.csdn.net/20170111122828434?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvUm90YmluZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" width="751" height="402"><br>
+            </p>
+            <p><span style="font-size:14px">7）然后输入命令 make 进行编译，这个过程可能要花一段时间。请耐心等待。<br>
+</span></p>
+            <p><span style="font-size:14px">8)&nbsp;&nbsp; 如果编译顺利完成，最后输入 ：make install 完成安装。<br>
+</span></p>
+            <p><span style="font-size:14px"><br>
+</span></p>
+            <p><span style="font-size:14px">网络上还有很多方式安装node.js ；有一篇文章描述的很详细，大家有兴趣可以参考一下：<a target="_blank" href="http://www.linuxidc.com/linux/2015-07/119588">Ubuntu 15.04下安装Node.JS的不同方式</a></span></p>
+            <p><a target="_blank" href="http://www.linuxidc.com/linux/2015-07/119588"></a><br>
+            </p>
+        </div>
+        <!-- 点赞 -->
+        <div id="art_thumb">
+            <p class="text-center clear"><a href="#"><span class="glyphicon glyphicon-thumbs-up"></span>赞(7)</a><a href="#"><span class="glyphicon glyphicon-thumbs-down"></span>贬(0)</a></p>
+        </div>
+        <!-- 分享插件 -->
+        <div class="share_article ">
+            <div class="bdsharebuttonbox bdshare-button-style0-24 rt" data-bd-bind="1493264298812">
+                <a href="#" class="bds_more" data-cmd="more"></a>
+                <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+                <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+                <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+                <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+                <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <!-- 评论区 -->
+        <div class="post_box">
+            <p><a href="login.html">登录</a>|<a href="register.html">注册</a><span class="rt">0/300</span></p>
+            <div class="forum_editer">
+                <form action="">
+                    <div class="input-group">
+                        <textarea name="comment" id="comment" style="width:100%;height:90px;"></textarea>
+                    </div>
+                    <div class="input-group">
+                        <button id="post_submit" type="button">提交</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="coment_box">
+            <h4>评论内容：</h4>
+            <div class="comment">
+                <div class="media">
+                    <a href="#" class="pull-left">
+                        <img class="media-object img-responsive" src="imgs/user_imgs/61198451.jpg" alt=""/>
+                    </a>
+                    <div class="media-body">
+                        <p><a href="#">Rotbing</a></p>
+                        <p class="comment_text">第一条评论！</p>
+                        <div class="coment_operator">
+                            <span><a href="#">回复</a></span>
+                            <span>2016-09-18 09:16:49</span>
+                            <span class="floor">1 楼</span>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="module">
+            <div class="Info_item">
+                <p><span class="glyphicon glyphicon-search"></span>站内搜索</p>
+            </div>
+            <form action="#">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="findKey" />
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Go!</button>
+                        </span>
+                </div>
+            </form>
+        </div>
+        <div class="module">
+            <div class="Info_item">
+                <p><span class="glyphicon glyphicon-cloud"></span>天气</p>
+            </div>
+            <iframe allowtransparency="true" frameborder="0" width="100%" height="98" scrolling="no" src="//tianqi.2345.com/plugin/widget/index.htm?s=2&z=1&t=0&v=0&d=1&bd=0&k=0080c0&f=&q=1&e=1&a=1&c=54511&w=197&h=98&align=center"></iframe>
+        </div>
+        <div class="module">
+            <div class="Info_item">
+                <p><span class="glyphicon glyphicon-book"></span>推荐博客</p>
+            </div>
+            <ul class="hotBlog">
+                <li>
+                    <em class="orderOne">
+                        <em class="orderOne">1</em>
+                    </em>
+                    <a href="#">简单让网站纯色滤镜</a>
+                </li>
+                <li>
+                    <em class="orderTwo">
+                        <em class="orderTwo">2</em>
+                    </em>
+                    <a href="#">简单让网站纯色滤镜</a>
+                </li>
+                <li>
+                    <em class="orderThree">
+                        <em class="orderThree">3</em>
+                    </em>
+                    <a href="#">简单让网站纯色滤镜</a>
+                </li>
+                <li>
+                    <em class="orderOther">
+                        <em class="orderOther">4</em>
+                    </em>
+                    <a href="#">简单让网站纯色滤镜</a>
+                </li>
+                <li>
+                    <em class="orderOther">
+                        <em class="orderOther">5</em>
+                    </em>
+                    <a href="#">简单让网站纯色滤镜</a>
+                </li>
+            </ul>
+        </div>
+        <div class="module">
+            <div class="Info_item">
+                <p><span class="glyphicon glyphicon-tags"></span>文章标签</p>
+            </div>
+            <ul class="word list-unstyled">
+                <li>JavaScript</li>
+                <li>Bootstrap</li>
+                <li>PHP</li>
+                <li>HTML5</li>
+                <li>jQuery</li>
+                <li>Two.js</li>
+                <li>Mysql</li>
+                <li>AngularJS</li>
+                <div class="clear"></div>
+            </ul>
+        </div>
+        <div class="module">
+            <div class="Info_item">
+                <p><span class="glyphicon glyphicon-file"></span>最新文章</p>
+            </div>
+            <ul class="last_article list-unstyled">
+                <li>
+                    <a href="#">文章标题</a>
+                </li>
+                <li>
+                    <a href="#">文章标题</a>
+                </li>
+                <li>
+                    <a href="#">文章标题</a>
+                </li>
+                <li>
+                    <a href="#">文章标题</a>
+                </li>
+                <li>
+                    <a href="#">文章标题</a>
+                </li>
+            </ul>
+        </div>
+        <div class="module">
+            <div class="Info_item">
+                <p><span class="glyphicon glyphicon-comment"></span>最新评论</p>
+            </div>
+            <ul class="comment list-unstyled">
+                <li>
+                    <a href="#">
+                        <img class="lt" src="imgs/user_imgs/61198451.jpg" alt=""/>
+                        <div class="lt">
+                            <strong>Rotbing</strong>
+                            <p>这是一个评论！</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img class="lt" src="imgs/user_imgs/61198451.jpg" alt=""/>
+                        <div class="lt">
+                            <strong>Rotbing</strong>
+                            <p>这是一个评论！</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img class="lt" src="imgs/user_imgs/61198451.jpg" alt=""/>
+                        <div class="lt">
+                            <strong>Rotbing</strong>
+                            <p>这是一个评论！</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img class="lt" src="imgs/user_imgs/61198451.jpg" alt=""/>
+                        <div class="lt">
+                            <strong>Rotbing</strong>
+                            <p>这是一个评论！</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img class="lt" src="imgs/user_imgs/61198451.jpg" alt=""/>
+                        <div class="lt">
+                            <strong>Rotbing</strong>
+                            <p>这是一个评论！</p>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="module">
+            <div class="Info_item">
+                <p><span class="glyphicon glyphicon-picture"></span>广告</p>
+            </div>
+            <ul class="shop_link list-unstyled">
+                <li><a href="#"><img class="img-responsive" src="imgs/ad/123456.jpg" alt=""/></a></li>
+                <li><a href=""><img class="img-responsive" src="imgs/ad/123456.jpg" alt=""/></a></li>
+                <li><a href=""><img class="img-responsive" src="imgs/ad/123456.jpg" alt=""/></a></li>
+                <li><a href=""><img class="img-responsive" src="imgs/ad/123456.jpg" alt=""/></a></li>
+                <div class="clear"></div>
+            </ul>
+        </div>
+        <div class="module">
+            <div class="Info_item">
+                <p><span class="glyphicon glyphicon-link"></span>友情链接</p>
+            </div>
+            <ul class="weblink list-unstyled">
+                <li>
+                    <a href="#"><span class="glyphicon glyphicon-link"></span>百度</a>
+                </li>
+                <li>
+                    <a href="#"><span class="glyphicon glyphicon-link"></span>Google</a>
+                </li>
+                <li>
+                    <a href="#"><span class="glyphicon glyphicon-link"></span>runton</a>
+                </li>
+                <li>
+                    <a href="#"><span class="glyphicon glyphicon-link"></span>fellowgov</a>
+                </li>
+                <li>
+                    <a href="#"><span class="glyphicon glyphicon-link"></span>360</a>
+                </li>
+                <div class="clear"></div>
+            </ul>
+        </div>
+        <div class="module">
+            <div class="Info_item">
+                <p><span class="glyphicon glyphicon-envelope"></span>联系我</p>
+            </div>
+            <ul class="contact_us list-unstyled">
+                <li>
+                    联系站长：949869293@qq.com
+                </li>
+                <li>
+                    QQ群讨论：94266216
+                </li>
+                <li>
+                    微信群：sge-001
+                </li>
+                <li>
+                    <img class="img-responsive" src="imgs/host/IMG_0630.jpg" alt=""/>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

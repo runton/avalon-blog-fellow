@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=9">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>fellowgov</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+        /* BODY
+        =============================================================================*/
+
+        body {
+            font-family: Helvetica, arial, freesans, clean, sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+            margin: 0 auto;
+        }
+        .clear{
+            clear: both;
+        }
+        #topMenu{
+            z-index: 1000;
+        }
+        .main{
+            padding: 50px;
+        }
+        .foot .container ul li{
+            color: #aaa;
+            text-align: center;
+        }
+
+        body>*:first-child {
+            margin-top: 0 !important;
+        }
+
+        body>*:last-child {
+            margin-bottom: 0 !important;
+        }
+
+        /* BLOCKS
+        =============================================================================*/
+
+        p, blockquote, ul, ol, dl, table, pre {
+            margin: 15px 0;
+        }
+
+        /* HEADERS
+        =============================================================================*/
+
+        h1, h2, h3, h4, h5, h6 {
+            margin: 20px 0 10px;
+            padding: 0;
+            font-weight: bold;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+            font-size: inherit;
+        }
+
+        h1 {
+            font-size: 28px;
+            color: #000;
+        }
+
+        h2 {
+            font-size: 24px;
+            border-bottom: 1px solid #ccc;
+            color: #000;
+        }
+
+        h3 {
+            font-size: 18px;
+        }
+
+        h4 {
+            font-size: 16px;
+        }
+
+        h5 {
+            font-size: 14px;
+        }
+
+        h6 {
+            color: #777;
+            font-size: 14px;
+        }
+
+        body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+            margin-top: 0;
+            padding-top: 0;
+        }
+
+        a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+            margin-top: 0;
+            padding-top: 0;
+        }
+
+        h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+            margin-top: 10px;
+        }
+
+        /* LINKS
+        =============================================================================*/
+
+        a {
+            color: #4183C4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* LISTS
+        =============================================================================*/
+
+        ul, ol {
+            padding-left: 30px;
+        }
+
+        ul li > :first-child,
+        ol li > :first-child,
+        ul li ul:first-of-type,
+        ol li ol:first-of-type,
+        ul li ol:first-of-type,
+        ol li ul:first-of-type {
+            margin-top: 0px;
+        }
+
+        ul ul, ul ol, ol ol, ol ul {
+            margin-bottom: 0;
+        }
+
+        dl {
+            padding: 0;
+        }
+
+        dl dt {
+            font-size: 14px;
+            font-weight: bold;
+            font-style: italic;
+            padding: 0;
+            margin: 15px 0 5px;
+        }
+
+        dl dt:first-child {
+            padding: 0;
+        }
+
+        dl dt>:first-child {
+            margin-top: 0px;
+        }
+
+        dl dt>:last-child {
+            margin-bottom: 0px;
+        }
+
+        dl dd {
+            margin: 0 0 15px;
+            padding: 0 15px;
+        }
+
+        dl dd>:first-child {
+            margin-top: 0px;
+        }
+
+        dl dd>:last-child {
+            margin-bottom: 0px;
+        }
+
+        /* CODE
+        =============================================================================*/
+
+        pre, code, tt {
+            font-size: 12px;
+            font-family: Consolas, "Liberation Mono", Courier, monospace;
+        }
+
+        code, tt {
+            margin: 0 0px;
+            padding: 0px 0px;
+            white-space: nowrap;
+            border: 1px solid #eaeaea;
+            background-color: #f8f8f8;
+            border-radius: 3px;
+        }
+
+        pre>code {
+            margin: 0;
+            padding: 0;
+            white-space: pre;
+            border: none;
+            background: transparent;
+        }
+
+        pre {
+            background-color: #f8f8f8;
+            border: 1px solid #ccc;
+            font-size: 13px;
+            line-height: 19px;
+            overflow: auto;
+            padding: 6px 10px;
+            border-radius: 3px;
+        }
+
+        pre code, pre tt {
+            background-color: transparent;
+            border: none;
+        }
+
+        kbd {
+            -moz-border-bottom-colors: none;
+            -moz-border-left-colors: none;
+            -moz-border-right-colors: none;
+            -moz-border-top-colors: none;
+            background-color: #DDDDDD;
+            background-image: linear-gradient(#F1F1F1, #DDDDDD);
+            background-repeat: repeat-x;
+            border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+            border-image: none;
+            border-radius: 2px 2px 2px 2px;
+            border-style: solid;
+            border-width: 1px;
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+            line-height: 10px;
+            padding: 1px 4px;
+        }
+
+        /* QUOTES
+        =============================================================================*/
+
+        blockquote {
+            border-left: 4px solid #DDD;
+            padding: 0 15px;
+            color: #777;
+        }
+
+        blockquote>:first-child {
+            margin-top: 0px;
+        }
+
+        blockquote>:last-child {
+            margin-bottom: 0px;
+        }
+
+        /* HORIZONTAL RULES
+        =============================================================================*/
+
+        hr {
+            clear: both;
+            margin: 15px 0;
+            height: 0px;
+            overflow: hidden;
+            border: none;
+            background: transparent;
+            border-bottom: 4px solid #ddd;
+            padding: 0;
+        }
+
+        /* TABLES
+        =============================================================================*/
+
+        table th {
+            font-weight: bold;
+        }
+
+        table th, table td {
+            border: 1px solid #ccc;
+            padding: 6px 13px;
+        }
+
+        table tr {
+            border-top: 1px solid #ccc;
+            background-color: #fff;
+        }
+
+        table tr:nth-child(2n) {
+            background-color: #f8f8f8;
+        }
+
+        /* IMAGES
+        =============================================================================*/
+
+        img {
+            max-width: 100%
+        }
+    </style>
+    <style type="text/css">
+        .highlight  { background: #ffffff; }
+        .highlight .c { color: #999988; font-style: italic } /* Comment */
+        .highlight .err { color: #a61717; background-color: #e3d2d2 } /* Error */
+        .highlight .k { font-weight: bold } /* Keyword */
+        .highlight .o { font-weight: bold } /* Operator */
+        .highlight .cm { color: #999988; font-style: italic } /* Comment.Multiline */
+        .highlight .cp { color: #999999; font-weight: bold } /* Comment.Preproc */
+        .highlight .c1 { color: #999988; font-style: italic } /* Comment.Single */
+        .highlight .cs { color: #999999; font-weight: bold; font-style: italic } /* Comment.Special */
+        .highlight .gd { color: #000000; background-color: #ffdddd } /* Generic.Deleted */
+        .highlight .gd .x { color: #000000; background-color: #ffaaaa } /* Generic.Deleted.Specific */
+        .highlight .ge { font-style: italic } /* Generic.Emph */
+        .highlight .gr { color: #aa0000 } /* Generic.Error */
+        .highlight .gh { color: #999999 } /* Generic.Heading */
+        .highlight .gi { color: #000000; background-color: #ddffdd } /* Generic.Inserted */
+        .highlight .gi .x { color: #000000; background-color: #aaffaa } /* Generic.Inserted.Specific */
+        .highlight .go { color: #888888 } /* Generic.Output */
+        .highlight .gp { color: #555555 } /* Generic.Prompt */
+        .highlight .gs { font-weight: bold } /* Generic.Strong */
+        .highlight .gu { color: #aaaaaa } /* Generic.Subheading */
+        .highlight .gt { color: #aa0000 } /* Generic.Traceback */
+        .highlight .kc { font-weight: bold } /* Keyword.Constant */
+        .highlight .kd { font-weight: bold } /* Keyword.Declaration */
+        .highlight .kp { font-weight: bold } /* Keyword.Pseudo */
+        .highlight .kr { font-weight: bold } /* Keyword.Reserved */
+        .highlight .kt { color: #445588; font-weight: bold } /* Keyword.Type */
+        .highlight .m { color: #009999 } /* Literal.Number */
+        .highlight .s { color: #d14 } /* Literal.String */
+        .highlight .na { color: #008080 } /* Name.Attribute */
+        .highlight .nb { color: #0086B3 } /* Name.Builtin */
+        .highlight .nc { color: #445588; font-weight: bold } /* Name.Class */
+        .highlight .no { color: #008080 } /* Name.Constant */
+        .highlight .ni { color: #800080 } /* Name.Entity */
+        .highlight .ne { color: #990000; font-weight: bold } /* Name.Exception */
+        .highlight .nf { color: #990000; font-weight: bold } /* Name.Function */
+        .highlight .nn { color: #555555 } /* Name.Namespace */
+        .highlight .nt { color: #000080 } /* Name.Tag */
+        .highlight .nv { color: #008080 } /* Name.Variable */
+        .highlight .ow { font-weight: bold } /* Operator.Word */
+        .highlight .w { color: #bbbbbb } /* Text.Whitespace */
+        .highlight .mf { color: #009999 } /* Literal.Number.Float */
+        .highlight .mh { color: #009999 } /* Literal.Number.Hex */
+        .highlight .mi { color: #009999 } /* Literal.Number.Integer */
+        .highlight .mo { color: #009999 } /* Literal.Number.Oct */
+        .highlight .sb { color: #d14 } /* Literal.String.Backtick */
+        .highlight .sc { color: #d14 } /* Literal.String.Char */
+        .highlight .sd { color: #d14 } /* Literal.String.Doc */
+        .highlight .s2 { color: #d14 } /* Literal.String.Double */
+        .highlight .se { color: #d14 } /* Literal.String.Escape */
+        .highlight .sh { color: #d14 } /* Literal.String.Heredoc */
+        .highlight .si { color: #d14 } /* Literal.String.Interpol */
+        .highlight .sx { color: #d14 } /* Literal.String.Other */
+        .highlight .sr { color: #009926 } /* Literal.String.Regex */
+        .highlight .s1 { color: #d14 } /* Literal.String.Single */
+        .highlight .ss { color: #990073 } /* Literal.String.Symbol */
+        .highlight .bp { color: #999999 } /* Name.Builtin.Pseudo */
+        .highlight .vc { color: #008080 } /* Name.Variable.Class */
+        .highlight .vg { color: #008080 } /* Name.Variable.Global */
+        .highlight .vi { color: #008080 } /* Name.Variable.Instance */
+        .highlight .il { color: #009999 } /* Literal.Number.Integer.Long */
+        .pl-c {
+            color: #969896;
+        }
+
+        .pl-c1,.pl-mdh,.pl-mm,.pl-mp,.pl-mr,.pl-s1 .pl-v,.pl-s3,.pl-sc,.pl-sv {
+            color: #0086b3;
+        }
+
+        .pl-e,.pl-en {
+            color: #795da3;
+        }
+
+        .pl-s1 .pl-s2,.pl-smi,.pl-smp,.pl-stj,.pl-vo,.pl-vpf {
+            color: #333;
+        }
+
+        .pl-ent {
+            color: #63a35c;
+        }
+
+        .pl-k,.pl-s,.pl-st {
+            color: #a71d5d;
+        }
+
+        .pl-pds,.pl-s1,.pl-s1 .pl-pse .pl-s2,.pl-sr,.pl-sr .pl-cce,.pl-sr .pl-sra,.pl-sr .pl-sre,.pl-src,.pl-v {
+            color: #df5000;
+        }
+
+        .pl-id {
+            color: #b52a1d;
+        }
+
+        .pl-ii {
+            background-color: #b52a1d;
+            color: #f8f8f8;
+        }
+
+        .pl-sr .pl-cce {
+            color: #63a35c;
+            font-weight: bold;
+        }
+
+        .pl-ml {
+            color: #693a17;
+        }
+
+        .pl-mh,.pl-mh .pl-en,.pl-ms {
+            color: #1d3e81;
+            font-weight: bold;
+        }
+
+        .pl-mq {
+            color: #008080;
+        }
+
+        .pl-mi {
+            color: #333;
+            font-style: italic;
+        }
+
+        .pl-mb {
+            color: #333;
+            font-weight: bold;
+        }
+
+        .pl-md,.pl-mdhf {
+            background-color: #ffecec;
+            color: #bd2c00;
+        }
+
+        .pl-mdht,.pl-mi1 {
+            background-color: #eaffea;
+            color: #55a532;
+        }
+
+        .pl-mdr {
+            color: #795da3;
+            font-weight: bold;
+        }
+
+        .pl-mo {
+            color: #1d3e81;
+        }
+        .task-list {
+            padding-left:10px;
+            margin-bottom:0;
+        }
+
+        .task-list li {
+            margin-left: 20px;
+        }
+
+        .task-list-item {
+            list-style-type:none;
+            padding-left:10px;
+        }
+
+        .task-list-item label {
+            font-weight:400;
+        }
+
+        .task-list-item.enabled label {
+            cursor:pointer;
+        }
+
+        .task-list-item+.task-list-item {
+            margin-top:3px;
+        }
+
+        .task-list-item-checkbox {
+            display:inline-block;
+            margin-left:-20px;
+            margin-right:3px;
+            vertical-align:1px;
+        }
+    </style>
+</head>
+<body>
+<nav id="topMenu" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">博客</a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="index.html"><span class=""></span> 返回首页 </a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container main">
+    <h1 style="text-align: center;">Fellow网站注册条款</h1>
+    <p>一、服务条款的确认和接纳<br>二、权利及义务<br>三、关于网络知识产权<br>四、关于责任<br>五、服务条款的修改和服务修订<br>六、通告<br>七、FELLOW的投诉处理<br>八、法律管辖</p>
+    <h2 id="-">内容</h2>
+    <p>FELLOW是一个面向中国软件和软件人的综合社区网站。我们希望您能够在FELLOW上交流、学习、进步。</p>
+    <h3 id="-">一、服务条款的确认和接纳</h3>
+    <p>FELLOW的各项电子服务的所有权和运作权归世纪乐知(北京)网络技术有限公司。 FELLOW提供的服务将完全按照其发布的章程、服务条款和操作规则严格执行。 会员必须完全同意所有服务条款并完成注册程序，才能成为FELLOW的正式注册会员并享受CSDN提供的更全面的服务。</p>
+    <h3 id="-">二、权利及义务</h3>
+    <p><strong>FELLOW的权利义务：</strong></p>
+    <ol>
+        <li>尊重会员隐私制度<br><strong>尊重会员个人隐私、保障会员隐私安全是FELLOW的一项基本政策，FELLOW不会公开、编辑或透露会员的注册资料，除非符合以下情况：</strong><br>(1) 根据中华人民共和国国家安全机构、公安部门的要求及根据相应的法律程序要求。<br>(2) 维护FELLOW的商标所有权及其它权益。<br>(3) 在紧急情况下竭力维护会员个人、其它社会个体和社会大众的安全。<br>(4) 严重违反FELLOW有关规定。<br>FELLOW保留结束会员使用网络服务资格的权利，并保证结束会员资格后仍为会员保密所有个人隐私。</li><li>维护FELLOW网站的正常工作，提供网络服务。</li><li>会员管理<br>FELLOW对会员的管理依据国家法律、地方法律和国际法律等的标准，同时会员在论坛上的行为将受FELLOW论坛行为准则的约束。</li><li>对会员信息的存储和限制<br>FELLOW不对会员所发布信息的删除或储存失败负任何法律责任。 FELLOW有判定会员的行为是否符合FELLOW服务条款的要求和精神的保留权利，如果会员违背了服务条款的规定，FELLOW有权选择适当的处理方法直至取消会员资格的权利。</li><li>迅速处理会员投诉。</li></ol>
+    <p><strong>会员的权利义务：</strong></p>
+    <ol>
+        <li><p>会员必须遵循：<br> (1)中国关于网络和BBS的相关法规。<br> (2)使用网络服务不作非法用途。<br> (3)不干扰或混乱网络服务。<br> (4)遵守所有使用网络服务的网络协议、规定、程序和惯例。<br><strong>同时会员承诺：</strong><br>(1)不传输任何非法的、骚扰性的、中伤他人的、辱骂性的、恐吓性的、伤害性的、庸俗的，淫秽等信息资料；<br>(2)不传输任何教唆他人构成犯罪行为的资料；<br>(3)不传输任何不符合当地法规、国家法律和国际法律的资料；<br>(4)未经许可而非法进入其它电脑系统是禁止的；<br>(5)法律规定的其他义务；<br>(6)在论坛讨论的时候接受FELLOW论坛行为准则；<br>(7)接受网管和版主对矛盾纠纷的调节，并配合相关行动决定，以行使投诉权力来解决纠纷。<br>若会员的行为不符合以上提到的服务条款，FELLOW将作出独立判断，并采用相关行动。会员需对自己在网上的行为承担法律责任。 会员若在FELLOW上散布和传播反动、色情或其他违反国家法律的信息，FELLOW将完全配合司法机关的行动。</p>
+        </li><li><p>基于网络服务的特性及重要性，会员同意：<br>(1)提供详尽、准确的个人资料。（强烈建议使用正确的身份证号码）<br>(2)不断更新注册资料，符合及时、详尽、准确的要求。<br>(3)自行配备上网的所需设备， 包括个人电脑、调制解调器或其他必备上网装置。<br>(4)自行负担个人上网所支付的与此服务有关的电话费用、 网络费用。</p>
+    </li><li><p>会员的帐号、密码和安全性<br>会员一旦注册成功，成为FELLOW的合法会员，将得到一个密码和会员名。会员对自己的帐号、密码和安全将负全部责任。<br>会员同意若发现任何非法使用该用户帐号或其它有损用户利益的情况，立即通告FELLOW。 FELLOW在收到正确的email或者用户身份证传真件后，可以对用户密码进行更改。用户亦可在输入正确的email地址，自己更改密码。<br>FELLOW建议会员定期更换密码，避免不必要的密码泄漏。另外，每个会员都要对以其会员名进行的所有活动和事件负全责。</p>
+    </li><li><p>会员发布宣传及广告信息<br>会员在他们发表的信息中加入宣传资料或参与广告策划、人才招聘等， 在FELLOW的免费服务上展示他们的产品，任何这类促销方法， 包括运输货物、付款、服务、商业条件、担保及与广告有关的描述都只是在相应的会员和广告销售商之间发生。 FELLOW不承担任何责任，FELLOW没有义务为这类广告销售负任何一部分的责任。会员需要对此承担全部责任。</p>
+    </li><li><p>会员同意保障和维护FELLOW全体会员的利益。</p>
+    </li></ol>
+    <h3 id="-">三、关于网络知识产权</h3>
+    <ol>
+        <li>会员对自己发表的文章拥有版权。</li><li>FELLOW对所有发表在FELLOW的文章拥有使用权。</li><li>如果转载文章请注名作者和出处。</li><li>如果发生版权纠纷，FELLOW有权在纠纷解决前删除有纠纷的文章</li><li>转载FELLOW的文章必须得到该文章作者或者FELLOW的授权，并标明作者和出处。</li></ol>
+    <h3 id="-">四、关于责任</h3>
+    <p>FELLOW对任何直接、间接、偶然、特殊及继起的损害不负法律责任， 这些损害可能来自：他人的行为、会员间文件的交流、在网上进行交易，非法使用网络服务或用户传送的信息有所变动。 这些行为都有可能会导致FELLOW的形象受损，所以FELLOW事先提出这种损害的可能性。</p>
+    <p>FELLOW对本身提供的有偿服务按照相关法律承担责任。</p>
+    <h3 id="-">五、服务条款的修改和服务修订</h3>
+    <p>FELLOW有权在必要时修改服务条款，FELLOW条款一旦发生变动，将会在重要页面上提示修改内容。 如果不同意所改动的内容，会员可以在指定的讨论区中讨论、投诉或者申请取消网络服务，但是在修正前必须执行现行的服务条款。 FELLOW保留随时修改或中断服务而无需告知用户的权利。FELLOW行使修改或中断服务的权利，无需对用户或第三方负责。</p>
+    <p>对于涉及有偿服务的改动FELLOW承担相关法律责任。</p>
+    <h3 id="-">六、通告</h3>
+    <p>FELLOW所有发给会员的通告都可通过重要页面的公告或电子邮件。 服务条款的修改、服务变更、或其它重要事件的通告都会以此形式进行。</p>
+    <p>对于FELLOW的系统通告email用户必须接收，但是一般提供退订功能，对于不可以退定的email通告，用户有权投诉。</p>
+    <h3 id="-fellow-">七、FELLOW的投诉处理</h3>
+    <p>当FELLOW中出现与各种问题（包括版权纠纷、用户投诉等）的时候请将投诉内容发送到949869293@qq.com中，并注明投诉，我们保证最迟不超过5个工作日回复。并可以在论坛中发贴子（仅限一个贴子）投诉， 但我们不保证一定回复，投诉不得有到处张扬影响论坛正常工作的行为，否则保留删除帖子的权力。 论坛的投诉请参照论坛用户行为准则。</p>
+    <h3 id="-">八、法律管辖</h3>
+    <p>网络服务条款要与中华人民共和国的法律解释相一致，会员和FELLOW一致同意服从中国法院管辖。 如发生FELLOW服务条款与中华人民共和国法律相抵触时，以法律为准，同时这些条款将完全按法律规定重新解释，而其它条款则依旧保持对会员产生法律效力和影响。</p>
+    <p>Fellow站长对以上条款有最终解释权。</p>
+</div>
+<div class="foot">
+    <div class="container">
+        <ul class="runton-info list-unstyled">
+            <li>Copyright © 2015-2016 云腾社区  runton.com.cn All Rights Reserved.</li>
+            <li> 备案号：皖ICP备16003202号-1</li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>

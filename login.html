@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=9">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>fellowgov</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="js/jquery-1.12.0.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <style>
+        body{
+            color:black;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            /*background: url("imgs/back.jpg") no-repeat;*/
+            /*background-attachment:fixed;*/
+            background-color: white;
+        }
+        .clear{
+            clear: both;
+        }
+        .lt{
+            float: left;
+        }
+        .rt{
+            float: right;
+        }
+        #topMenu{
+            margin-bottom: 15px;
+            min-height: 40px;
+            border-bottom: 1px solid transparent;
+            color: #e7e7e7;
+            background-color: #f8f8f8;
+            z-index: 1000;
+
+        }
+        #topMenu .logo a{
+            display: inline-block;
+            height: 100%;
+            line-height: 40px;
+            text-decoration: none;
+        }
+        #topMenu ul li{
+            float: left;
+            width: 80px;
+            height: 40px;
+        }
+        #topMenu ul li a{
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            line-height: 40px;
+        }
+        .main{
+            padding: 30px;
+        }
+        .foot .container ul li{
+            color: #aaa;
+            text-align: center;
+        }
+        .login-part{
+            padding: 15px;
+            border:1px solid #ddd;
+        }
+        .login-part h2{
+            text-align: center;
+        }
+        .user-name,.user-pwd{
+            background: #fff;
+            display: block;
+            width: 100%;
+            padding: 8px 0;
+            border: 2px solid #e1e1e1;
+            margin-bottom: 20px;
+            font-weight: normal;
+            text-indent: 43px;
+            outline: 0;
+            font-size: 1.25em;
+        }
+        .user-name{
+            background: url("imgs/mini_icon/login-locked-icon.png") no-repeat 15px center;
+        }
+        .user-pwd{
+            background: url("imgs/mini_icon/login-key-icon.png") no-repeat 15px center;
+        }
+        .forget-password{
+            color: #999;
+            font-size: 1em;
+        }
+        .forget-password:after{
+            display: table;
+            content: "";
+            clear: both;
+        }
+        .forget-password .forget{
+            text-align: right;
+        }
+        .logging{
+            background: #dc3c00;
+            display: block;
+            height: 44px;
+            line-height: 44px;
+            color: #fff;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.5em;
+            text-decoration: none;
+            clear: both;
+            width: 100%;
+            border: none;
+        }
+        .three-part{
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+<nav id="topMenu">
+    <div class="container">
+        <div class="logo lt">
+            <a href="index.html">博客</a>
+        </div>
+        <ul class="rt list-unstyled">
+            <li><a href="register.html"><span class="glyphicon glyphicon-registration-mark"></span> 注册</a></li>
+            <li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container main">
+    <div class="col-md-7 col-xs-7 col-sm-7 col-lg-7">
+        <a href="#"><img src="https://passport.csdn.net/bgimage/login-banner.png" alt=""/></a>
+    </div>
+    <div class="col-md-5 col-xs-5 col-sm-5 col-lg-5">
+        <div class="login-part">
+            <h2>用户登录</h2>
+            <div class="loginInfo">
+                <form action="">
+                    <input type="text" class="user-name" name="username" placeholder="输入用户名/邮箱/手机号"/>
+                    <input type="password" class="user-pwd" name="userpwd" placeholder="输入用户密码"/>
+                    <div class="errInfo" style="display: none">
+                        <span class="err-icon"></span>
+                        <span class="err-message"></span>
+                    </div>
+                    <div class="forget-password">
+                        <span class="col-md-6 col-xs-6 col-sm-6 col-lg-6">
+                            <input type="checkbox" name="remeberme" id="remeberme" value="true"/>
+                            <label for="remeberme">
+                                自动登录
+                            </label>
+                        </span>
+                        <span class="col-md-6 col-xs-6 col-sm-6 col-lg-6 forget">
+                            <a href="reset.html">忘记密码</a>
+                        </span>
+                    </div>
+                    <input class="logging" type="button" value="登录" />
+                </form>
+            </div>
+            <div class="line"></div>
+            <div class="three-part">
+                <div>
+                    <span>还没有账号？</span>
+                    <span>
+                        <a href="#">立即注册</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="foot">
+    <div class="container">
+        <ul class="runton-info list-unstyled">
+            <li>Copyright © 2015-2016 云腾社区  runton.com.cn All Rights Reserved.</li>
+            <li> 备案号：皖ICP备16003202号-1</li>
+        </ul>
+    </div>
+</div>
+<script>
+    (function($) {
+        $.fn.placeholder = function(options) {
+            var opts = $.extend({}, $.fn.placeholder.defaults, options);
+            var isIE = document.all ? true : false;
+            return this.each(function() {
+                var _this = this,
+                        placeholderValue = _this.getAttribute("placeholder"); //缓存默认的placeholder值
+                if (isIE) {
+                    _this.setAttribute("value", placeholderValue);
+                    _this.onfocus = function() {
+                        $.trim(_this.value) == placeholderValue ? _this.value = "" : '';
+                    };
+                    _this.onblur = function() {
+                        $.trim(_this.value) == "" ? _this.value = placeholderValue : '';
+                    };
+                }
+            });
+        };
+    })(jQuery);
+
+    $("input").placeholder();
+</script>
+</body>
+</html>

@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=9">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>重置密码</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!--[if IE ]>
+    <script src="js/bluebird.min.js"></script>
+    <![endif]-->
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="js/jquery-1.12.0.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="avalon/dist/avalon.js"></script>
+    <style>
+        body{
+            color:black;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            background-color: white;
+        }
+        .clear{
+            clear: both;
+        }
+        #topMenu{
+            z-index: 1000;
+        }
+        .main{
+            padding: 30px;
+        }
+        .foot .container ul li{
+            color: #aaa;
+            text-align: center;
+        }
+        #rootwizard {
+            text-align: center;
+        }
+        #rootwizard .fixedBox{
+            display: inline-block;
+            min-width: 524px;
+            text-align: left;
+        }
+        .clearfix{
+            padding: 15px;
+        }
+        .clearfix div.row{
+            padding-bottom: 10px;
+            vertical-align: middle;
+            text-align: center;
+            font-size: 1.166em;
+            color: #333;
+        }
+        .clearfix .row span{
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .clearfix .row .tit {
+            display: inline-block;
+            width: 125px;
+            font-size: 0.8em;
+            padding-right: 5px;
+            text-align: right;
+        }
+        .clearfix .row input {
+            border: 1px solid #ccc;
+            width: 200px;
+            height: 35px;
+            line-height: 35px;
+            padding-left: 5px;
+            font-size: 14px;
+            color: #ccc;
+        }
+        .change-code {
+            font-size: 1em;
+            margin-left: 5px;
+            margin-top: 10px;
+            color: #999;
+        }
+
+        .clearfix .row .send-code {
+            display: inline-block;
+            background: #ddd;
+            margin-left: 0px;
+            width: 120px;
+            height: 35px;
+            line-height: 30px;
+            font-size: 14px;
+            white-space: nowrap;
+            color: #333;
+            text-align: center;
+            text-decoration: none;
+        }
+        .clearfix .row .resend-code {
+            position: relative;
+            display: none;
+        }
+        .clearfix .row .submit {
+            display: inline-block;
+            margin-left: 274px;
+            margin-right: 10px;
+            width: 298px;
+            height: 30px;
+            vertical-align: text-bottom;
+            font-size: 16px;
+            line-height: 30px;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            background: #dc3c00;
+        }
+
+
+        .tab-pane{
+            min-height: 260px;
+        }
+        .bwizard-steps {
+            display: inline-block;
+            margin: 0; padding: 0;
+            background: #fff }
+        .bwizard-steps .active {
+            color: #fff;
+            background: #FF9966 }
+        .bwizard-steps .active:after {
+            border-left-color: #FF9966 }
+        .bwizard-steps .active a {
+            color: #fff;
+            cursor: default }
+        .bwizard-steps .label {
+            position: relative;
+            top: -1px;
+            margin: 0 5px 0 0; padding: 1px 5px 2px;
+            color: #FF9966
+        }
+        .bwizard-steps .active .label {
+            background-color: #fff;}
+        .bwizard-steps li {
+            display: inline-block; position: relative;
+            margin-right: 5px;
+            padding: 12px 17px 10px 30px;
+            *display: inline;
+            *padding-left: 17px;
+            width: 260px;
+            background: #ddd;
+            line-height: 18px;
+            list-style: none;
+            zoom: 1; }
+        .bwizard-steps li:first-child {
+            padding-left: 12px;
+            -moz-border-radius: 4px 0 0 4px;
+            -webkit-border-radius: 4px 0 0 4px;
+            border-radius: 4px 0 0 4px; }
+        .bwizard-steps li:first-child:before {
+            border: none }
+        .bwizard-steps li:last-child {
+            margin-right: 0;
+            -moz-border-radius: 0 4px 4px 0;
+            -webkit-border-radius: 0 4px 4px 0;
+            border-radius: 0 4px 4px 0; }
+        .bwizard-steps li:last-child:after {
+            border: none }
+        .bwizard-steps li:before {
+            position: absolute;
+            left: 0; top: 0;
+            height: 0; width: 0;
+            border-bottom: 20px inset transparent;
+            border-left: 20px solid #fff;
+            border-top: 20px inset transparent;
+            content: "" }
+        .bwizard-steps li:after {
+            position: absolute;
+            right: -20px; top: 0;
+            height: 0; width: 0;
+            border-bottom: 20px inset transparent;
+            border-left: 20px solid #efefef;
+            border-top: 20px inset transparent;
+            content: "";
+            z-index: 2; }
+        .bwizard-steps a {
+            color: #333 }
+        .bwizard-steps a:hover {
+            text-decoration: none }
+        .bwizard-steps.clickable li:not(.active) {
+            cursor: pointer }
+        .bwizard-steps.clickable li:hover:not(.active) {
+            background: #ccc }
+        .bwizard-steps.clickable li:hover:not(.active):after {
+            border-left-color: #ccc }
+        .bwizard-steps.clickable li:hover:not(.active) a {
+            color: #08c }
+        @media (max-width: 480px) {
+            /* badges only on small screens */
+            .bwizard-steps li:after,
+            .bwizard-steps li:before {
+                border: none }
+            .bwizard-steps li,
+            .bwizard-steps li.active,
+            .bwizard-steps li:first-child,
+            .bwizard-steps li:last-child {
+                margin-right: 0;
+                padding: 0;
+                background-color: transparent }
+        }
+        .pager .previous>a, .pager .previous>span{
+            float: none;
+        }
+        .pager .next>a, .pager .next>span{
+            float: none;
+        }
+        #tab3 h2{
+            padding-top: 80px;
+            margin-bottom: 30px;
+        }
+        #tab3 p a{
+            display: inline-block;
+            margin: 15px;
+        }
+        .msgTip{
+            font-size: 0.6em;
+        }
+        .valid-default{
+
+        }
+        .valid-success{
+            color: green;
+        }
+        .valid-err{
+            color: red;
+        }
+        .notice span{
+            display: inline-block;
+            padding-left: 125px;
+            width: 524px;
+            text-align: left;
+            font-size: 0.5em;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body ms-controller="root">
+<nav id="topMenu" class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">博客</a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="index.html"><span class=""></span> 返回首页 </a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container main">
+    <div id="rootwizard">
+        <ul class="regWizard bwizard-steps">
+            <li class="active"><a href="#"><span class="label">1</span> 验证身份</a></li>
+            <li><a href="#"><span class="label">2</span> 设置密码</a></li>
+            <li><a href="#"><span class="label">3</span> 完成</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="tab1">
+                <form id="form" class="clearfix" method="post" action="" ms-validate="@validate">
+                    <div class="row">
+                        <div class="fixedBox">
+                            <span class="tit">身份验证方式：</span>
+                            <span class="input">
+                                <select name="validType" id="validType" :duplex="@validStyle">
+                                    <option value="byEmail">邮箱验证</option>
+                                    <option value="byQuestion">安全问题验证</option>
+                                </select>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="Email_valid_box" ms-if="@validStyle=='byEmail'">
+                        <div class ="row">
+                            <div class="fixedBox">
+                                <span class="tit">绑定邮箱：</span>
+                                <span class="input">
+                                    <input type="text" name="email" :duplex="@email" ms-rules="{required:true,pattern:/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/}"/>
+                                </span>
+                                <span class="msgTip"></span>
+                            </div>
+                        </div>
+                        <div class ="row">
+                            <div class="fixedBox">
+                                <span class="tit"></span>
+                                <a href="#" class="send-code">获取验证码</a>
+                                <span class="msgTip">60s后可重新申请验证码</span>
+                            </div>
+                        </div>
+                        <div class ="row">
+                            <div class="fixedBox">
+                                <span class="tit">请填写邮箱校验码：</span>
+                                <span class="input">
+                                    <input type="text" name="vcode" :duplex="@vcode" ms-rules="{required:true,pattern:/^[a-zA-Z0-9]{4}/}"/>
+                                </span>
+                                <span class="msgTip"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Question_valid_box" ms-if="@validStyle=='byQuestion'">
+                        <div class ="row">
+                            <div class="fixedBox">
+                                <span class="tit">账号 <i>*</i>：</span>
+                                <span class="input">
+                                    <input type="text" name="username" :duplex="@username" ms-rules="{required:true,pattern:/^[a-zA-Z0-9]{4,16}$/}"/>
+                                </span>
+                                <span class="msgTip"></span>
+                            </div>
+                        </div>
+                        <div class ="row">
+                            <div class="fixedBox">
+                                <span class="tit">密保问题-1：</span>
+                                <span class="input">
+                                    <strong>你的家乡在哪里？</strong>
+                                </span>
+                            </div>
+                        </div>
+                        <div class ="row">
+                            <div class="fixedBox">
+                                <span class="tit">答案 <i>*</i>：</span>
+                                <span class="input">
+                                    <input type="text" name="answer1" :duplex="@answer1" ms-rules="{required:true}"/>
+                                </span>
+                                <span class="msgTip"></span>
+                            </div>
+                        </div>
+                        <div class ="row">
+                            <div class="fixedBox">
+                                <span class="tit">密保问题-2：</span>
+                                <span class="input">
+                                    <strong>你最喜欢的电影明星是谁？</strong>
+                                </span>
+                            </div>
+                        </div>
+                        <div class ="row">
+                            <div class="fixedBox">
+                                <span class="tit">答案 <i>*</i>：</span>
+                                <span class="input">
+                                    <input type="text" name="answer2" :duplex="@answer2" ms-rules="{required:true}"/>
+                                </span>
+                                <span class="msgTip"></span>
+                            </div>
+                        </div>
+                        <div class ="row">
+                            <div class="fixedBox">
+                                <span class="tit">密保问题-3：</span>
+                                <span class="input">
+                                    <strong>你最喜欢的什么球队？</strong>
+                                </span>
+                            </div>
+                        </div>
+                        <div class ="row">
+                            <div class="fixedBox">
+                                <span class="tit">答案 <i>*</i>：</span>
+                                <span class="input">
+                                    <input type="text" name="answer3" :duplex="@answer3" ms-rules="{required:true}" />
+                                </span>
+                                <span class="msgTip"></span>
+                            </div>
+                            <div class="notice">
+                                <span>请确保您注册账号后，设置了密保答案，否则无法通过此方式找回密码</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="fixedBox">
+                            <span class="tit"></span>
+                            <span class="provision" style="font-size:12px;">
+                                <input type="button" class="btn btn-primary" value="提交" ms-click="validUser();"/>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="tab-pane" id="tab2">
+                <form class="clearfix" action="">
+                    <div class ="row">
+                        <div class="fixedBox">
+                            <span class="tit">账号名：</span>
+                            <span class="input">
+                                <strong>{{username}}</strong>
+                            </span>
+                        </div>
+                    </div>
+                    <div class ="row">
+                        <div class="fixedBox">
+                            <span class="tit">新密码：</span>
+                            <span class="input">
+                                <input type="password" name="newPwd1" :duplex="@newPwd1" ms-rules="{required:true,pattern:/^[a-zA-Z0-9]{4,16}$/}" />
+                            </span>
+                        </div>
+                    </div>
+                    <div class ="row">
+                        <div class="fixedBox">
+                            <span class="tit">重复输入：</span>
+                            <span class="input">
+                                <input type="password" name="newPwd2" :duplex="@newPwd2" ms-rules="{required:true,pattern:/^[a-zA-Z0-9]{4,16}$/}" />
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="fixedBox">
+                            <span class="tit"></span>
+                            <span class="provision" style="font-size:12px;">
+                                <input type="button" class="btn btn-primary" value="提交" ms-click="alterPasswd();"/>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="tab-pane" id="tab3">
+                <h2 :if="!@resetResult" class="text-success text-center">抱歉！ 服务器未响应，请稍后再试。</h2>
+                <h2 :if="@resetResult" class="text-success text-center">恭喜您！ 账号密码设置成功了。</h2>
+                <p class="text-center">
+                    <a href="index.html">返回首页</a>
+                    <a href="reset.html">重新找回</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="foot">
+    <div class="container">
+        <ul class="runton-info list-unstyled">
+            <li>Copyright © 2015-2016 云腾社区  runton.com.cn All Rights Reserved.</li>
+            <li> 备案号：皖ICP备16003202号-1</li>
+        </ul>
+    </div>
+</div>
+<!--<script src="js/jquery.bootstrap.wizard.min.js"></script>-->
+<script>
+    (function($) {
+        $.fn.placeholder = function(options) {
+            var opts = $.extend({}, $.fn.placeholder.defaults, options);
+            var isIE = document.all ? true : false;
+            return this.each(function() {
+                var _this = this,
+                        placeholderValue = _this.getAttribute("placeholder"); //缓存默认的placeholder值
+                if (isIE) {
+                    if(placeholderValue != null){
+                        _this.setAttribute("value", placeholderValue);
+                        _this.onfocus = function() {
+                            $.trim(_this.value) == placeholderValue ? _this.value = "" : '';
+                        };
+                        _this.onblur = function() {
+                            $.trim(_this.value) == "" ? _this.value = placeholderValue : '';
+                        };
+                    }
+                }
+            });
+        };
+    })(jQuery);
+
+    $("input").placeholder();
+
+    var vm =avalon.define({
+        $id:"root",
+        validStyle:'byEmail',
+        email:'',
+        vcode:'',
+        username:'',
+        answer1:'',
+        answer2:'',
+        answer3:'',
+        newPwd1:'',
+        newPwd2:'',
+        newPwd3:'',
+        resetResult: false,
+        validate:{
+            onError: function (reasons) {
+                reasons.forEach(function (reason) {
+                    //各输入表单分类处理
+                    var target = reason.element;
+                    var msgTip =$(target).parent().next("span.msgTip");
+                    msgTip.addClass("valid-err");
+                    msgTip.html("<img src='imgs/mini_icon/error.png' style='width: 23px;height: 23px'/>");
+                })
+            },
+            onSuccess: function(reasons, event) {
+                reasons.forEach(function (reason) {
+                    var target = reason.element;
+                    var msgTip = $(target).parent().next("span.msgTip");
+                    msgTip.addClass("valid-success");
+                    msgTip.html("<img src='imgs/mini_icon/right.png' style='width: 23px;height: 23px'/>");
+                })
+            },
+            onValidateAll: function (reasons) {
+                if (reasons.length) {
+                    console.log('有表单没有通过');
+                    return false;
+                } else {
+                    console.log('全部通过');
+                    return true;
+                }
+            }
+        },
+        validUser: function(){
+            // 提交表单信息
+            // 成功则进入修改密码阶段
+
+            var next = $('.bwizard-steps .active').next('li')[0];
+            $('.bwizard-steps .active').removeClass("active");
+            $(next).addClass('active');
+            console.log(next);
+
+
+            $('#tab1').removeClass('active');
+            $('#tab2').addClass('active');
+
+            // 失败 则提示 用户身份验证失败
+        },
+        alterPasswd: function(){
+            //提交账号密码
+            //修改结果
+            var next = $('.bwizard-steps .active').next('li');
+            $('.bwizard-steps .active').removeClass("active");
+            next.addClass('active');
+
+            $('#tab2').removeClass('active');
+            $('#tab3').addClass('active');
+        }
+    });
+</script>
+</body>
+</html>

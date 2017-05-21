@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=9">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>fellowgov</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/fellow.css"/>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="js/jquery-1.12.0.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="avalon/dist/avalon.js"></script>
+    <link rel="stylesheet" href="kindeditor/themes/default/default.css" />
+    <script charset="utf-8" src="kindeditor/kindeditor.js"></script>
+    <script charset="utf-8" src="kindeditor/lang/zh_CN.js"></script>
+    <style>
+        #art_edit .form-group h5{
+            color: #999;
+        }
+        #art_edit .form-group h5 span{
+            color: #a94444;
+        }
+        #art_edit .form-group label{
+            font-weight: normal;
+        }
+        .form-ctrl{
+            display: inline-block;
+            /* width: 100%; */
+            height: 34px;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+            -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        }
+        #title{
+            width: 500px;
+        }
+        #art_tags{
+            width: 300px;
+        }
+    </style>
+</head>
+<body ms-controller="root">
+<nav id="topMenu">
+    <div class="container">
+        <div class="logo lt">
+            <a href="index.html">博客</a>
+        </div>
+        <ul class="rt list-unstyled">
+            <li><a href="register.html"><span class="glyphicon glyphicon-registration-mark"></span> 注册</a></li>
+            <li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container main">
+    <div class="row content_box">
+        <div class="col-md-12">
+            <form id="art_edit" action="">
+                <div class="form-group">
+                    <h5>文章标题 <span>尊重原创，请保证您的文章为原创作品</span></h5>
+                    <select class="form-ctrl" name="type" id="art_type">
+                        <option value="0">原创</option>
+                        <option value="1">翻译</option>
+                        <option value="2">转载</option>
+                    </select>
+                    <input type="text" id="title" name="title" placeholder="文章标题" class="form-ctrl"/>
+
+                </div>
+                <div class="form-group">
+                    <h5>文章标签（添加Tag，你的内容能被更多人看到）</h5>
+                    <input id="art_tags" type="text" name="title" placeholder="文章标签" class="form-ctrl"/>（最多添加5个标签，多个标签之间用“,”分隔）
+                </div>
+                <div class="form-group">
+                    <h5>文章分类（到分类首页）</h5>
+                    <input type="radio" name="class" value="1" id="class11"/>
+                    <label for="class11">移动开发</label>
+                    <input type="radio" name="class" value="2" id="class12"/>
+                    <label for="class12">Web前端</label>
+                    <input type="radio" name="class" value="3" id="class13"/>
+                    <label for="class13">架构设计</label>
+                    <input type="radio" name="class" value="4" id="class14"/>
+                    <label for="class14">编程语言</label>
+                    <input type="radio" name="class" value="5" id="class15"/>
+                    <label for="class15">互联网</label>
+                    <input type="radio" name="class" value="6" id="class16"/>
+                    <label for="class16">数据库</label>
+                </div>
+                <div class="form-group">
+                    <h5>文章评论功能</h5>
+                    <input type="radio" name="class" value="1" id="comment_y"/>
+                    <label for="comment_y">允许</label>
+                    <input type="radio" name="class" value="2" id="comment_n"/>
+                    <label for="comment_n">禁止</label>
+                </div>
+                <div class="form-group">
+                    <h5>摘要：（默认自动提取您文章的前200字显示在博客首页作为文章摘要，您也可以在这里自行编辑 ）</h5>
+                    <textarea name="about" id="describe" style="width:100%;height:90px;"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <h5>文章内容</h5>
+                    <textarea id="editor_id" name="content" style="width:100%;height:700px;">
+                        &lt;strong&gt;HTML内容&lt;/strong&gt;
+                    </textarea>
+                </div>
+
+                <div>
+                    <p class="text-danger">提示：请不要发布任何推广、广告（包括招聘）、政治、低俗等方面的内容，不要把博客当作SEO工具，否则可能会影响到您的使用。</p>
+                </div>
+                <div class="form-group text-center">
+                    <button class="btn btn-primary" >发表文章</button>
+                    <button class="btn btn-primary" >保存文章</button>
+                    <button class="btn btn-primary" >舍弃</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+<div class="foot">
+    <div class="container">
+        <ul class="runton-info list-unstyled">
+            <li>Copyright © 2015-2016 云腾社区  runton.com.cn All Rights Reserved.</li>
+            <li> 备案号：皖ICP备16003202号-1</li>
+        </ul>
+    </div>
+</div>
+<!-- TODO 侧边栏 -->
+<div class="slideToolbarContainer">
+    <!-- TODO 浮动导航 -->
+    <div class="slideToolbar">
+        <div class="appList">
+            <div class="RThome">
+                <a href="#">首页</a>
+            </div>
+            <div class="RTsearch">
+                <a href="#">百度</a>
+            </div>
+            <div class="RTnevagation">
+                <a href="#">导航</a>
+            </div>
+            <div class="RTMusic">
+                <a href="#">音乐</a>
+            </div>
+            <div class="RTgames">
+                <a href="#">游戏</a>
+            </div>
+        </div>
+        <div class="playerContainer" id="Mplayer">
+            <h2 class="icon icon-lab">Mplayer</h2>
+            <div id="player4" class="aplayer"></div>
+        </div>
+    </div>
+</div>
+<script src="js/APlayer.min.js"></script>
+<script src="js/common.js"></script>
+<script>
+    var editor;
+    KindEditor.ready(function(K) {
+        editor = K.create('#editor_id');
+    });
+</script>
+</body>
+</html>
