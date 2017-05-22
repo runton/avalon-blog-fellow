@@ -1,19 +1,19 @@
 # avalon-blog-fellow
 使用avalon.js编辑的博客静态单页面应用。
 
-#主框架版本
+# 主框架版本
   avalon.js  2.2.4
 
-#运行环境：
+# 运行环境：
   需要xampp或其他支持php脚本的web服务器环境。
   
   http://localhost:8080/avalon-blog-fellow/home/index.html
 
-#使用插件：
-  1） kindeditor编辑器
-  2） APlayer 播放器
-  3） mmRouter avalon 路由
-  4） vmc.slider.full.min.js
+# 使用插件：
+  1. kindeditor编辑器
+  2. APlayer 播放器
+  3. mmRouter avalon 路由
+  4. vmc.slider.full.min.js
   ...
   
 # 模块化编程
