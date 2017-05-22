@@ -19,35 +19,35 @@
 # 模块化编程
   页面采用require加载js文件，使用components.js文件定义avalon组件。
   
-  avalon.component('ms-home',{
-    template:readHTML('components/home.html'),
-    defaults:{
-        content: "",
-        onReady:function(){
-            $(function() {
-                $('#slider').vmcSlider({
-                    width: 750,
-                    height: 350,
-                    gridCol: 10,
-                    gridRow: 5,
-                    gridVertical: 20,
-                    gridHorizontal: 10,
-                    autoPlay: true,
-                    ascending: true,
-                    effects: [
-                        'fade', 'fadeLeft'
-                    ],
-                    ie6Tidy: false,
-                    random: false,
-                    duration: 2000,
-                    speed: 900
+    avalon.component('ms-home',{
+        template:readHTML('components/home.html'),
+        defaults:{
+            content: "",
+            onReady:function(){
+                $(function() {
+                    $('#slider').vmcSlider({
+                        width: 750,
+                        height: 350,
+                        gridCol: 10,
+                        gridRow: 5,
+                        gridVertical: 20,
+                        gridHorizontal: 10,
+                        autoPlay: true,
+                        ascending: true,
+                        effects: [
+                            'fade', 'fadeLeft'
+                        ],
+                        ie6Tidy: false,
+                        random: false,
+                        duration: 2000,
+                        speed: 900
+                    });
                 });
-            });
-            $('#pageToolbar').Paging({pagesize:10,count:85,toolbar:true});
-            $("#header_nav li a[href='#!/home']").parent("li").siblings().removeClass('current');
-            $("#header_nav a[href='#!/home']").parent("li").addClass('current');
+                $('#pageToolbar').Paging({pagesize:10,count:85,toolbar:true});
+                $("#header_nav li a[href='#!/home']").parent("li").siblings().removeClass('current');
+                $("#header_nav a[href='#!/home']").parent("li").addClass('current');
+            }
         }
-    }
-});
+    });
 
 本项目只是一个简单的静态blog，很多功能没有具体实现，界面也有不少瑕疵。但作为学习avalon框架应该绰绰有余了。
