@@ -14,7 +14,7 @@
   2. APlayer 播放器
   3. mmRouter avalon 路由
   4. vmc.slider.full.min.js
-  ...
+  5. ...
   
 # 模块化编程
   页面采用require加载js文件，使用components.js文件定义avalon组件。
